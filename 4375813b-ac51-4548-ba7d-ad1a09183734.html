@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Anodyne 2: Return to Dust</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('4375813b-ac51-4548-ba7d-ad1a09183734/32917160-9592-4998-b676-2d1525117d85.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="4375813b-ac51-4548-ba7d-ad1a09183734/fa1b05f5-a4e4-4ae5-873b-7b72a68a8027.ico"/> Anodyne 2: Return to Dust</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="4375813b-ac51-4548-ba7d-ad1a09183734/c2425ed8-f5e2-459e-9c3c-ff5e22b12661.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-6/3/2022">6/3/2022</a> 4:21:14</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-6/14/2022">6/14/2022</a> 12:50:54</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Epic Games">Epic Games</a><br/><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-8/12/2019">8/12/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-87">87</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Marina Kittaka">Marina Kittaka</a><br/><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Melos Han-Tani">Melos Han-Tani</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Analgesic Productions">Analgesic Productions</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Cloud Saves">Cloud Saves</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/877810" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/877810/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/877810/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=877810" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/877810" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=877810" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/877810/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag">Rescue A Mysterious Island From A Mind-Warping Plague</h2><br>Nano Dust infects the islanders of New Theland, distorting their emotions and desires. You play as Nova, a Nano Cleaner who must explore the island, seeking out the sick and shrinking inside their bodies to suction up the Dust.<br><br>Anodyne 2: Return to Dust combines the thrilling scale and cinematic storytelling of 3D games with the tight design and easy-to-pick-up satisfaction of 2D Zelda-like adventures. With art that re-imagines the PS1 and N64 era, explore 3D cities, valleys, and wastelands then shrink into the varied 2D mindscapes of characters, from snowy, aurora-lit valleys to perilous volcanic construction sites!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/877810/extras/SteamHeaders_rage.png?t=1630303429" /><h2 class="bb_tag">Features</h2><br><ul class="bb_ul"><li>Jump, drive, and walk across gorgeous and haunting locales in 3D, speaking with strange and memorable characters.<br></li><li>Vacuum up Nano Dust in 2D, suck up and fight enemies, all while overcoming mind-bending challenges related to the characters’ inner lives.<br></li><li>Experience the thrilling and emotional story of Nova. Her destiny is clear: she is the Nano Cleaner who will save New Theland. But strange characters &amp; painful experiences will put her loyalty to the test...<br></li><li>Choose where you want to go! The sweeping vistas of New Theland quickly open up to exploration.<br></li><li>Access the outer reaches of New Theland by using magical Cards you will find on your journey.<br></li><li>Transform into a car at will and quickly drive around the world. No need to call a horse!<br></li><li>Fire your Spark to shrink into the bodies of the infected, explore the 2D Zelda-like dungeons within, and heal them.<br></li><li>Enjoy the lush, dreamy and breathtaking 3D and 2D landscapes painted and pixeled by artist Marina Kittaka.<br></li><li>Listen to over 50 new songs influenced by countless genres by Melos Han-Tani, perfectly fitting the varied landscapes of Anodyne 2.<br></li><li>Play the newest game from the dream duo behind Anodyne 1, All Our Asias, and Even the Ocean.<br><br>ESRB Rating E 10+. Content Warnings below.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/877810/extras/SteamHeaders_clone.png?t=1630303429" /><h2 class="bb_tag">A Lush, Surreal Lo-fi 3D and 2D World</h2><br>Anodyne 2: Return to Dust uses modern technology to reimagine old 3D art of the PS1, PS2, and N64 era, as well as the 2D art of the GBA and SNES. Each area captures a strong visual mood, with new characters to meet and sights to see.<br><br>If you like exploring beautiful places and experiencing dramatic stories - Anodyne 2's world is ready for you to explore!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/877810/extras/SteamHeaders_alb.png?t=1630303429" /><h2 class="bb_tag">Do I need to play Anodyne 1?</h2>Nope! Similar to the Final Fantasy franchise, there's no need to play the original Anodyne to understand the story in Anodyne 2: Return to Dust, but longtime fans will find connections between the two! If you'd like to check out both, you may want to purchase the Franchise Bundle!<br><a href="http://store.steampowered.com/app/234900/Anodyne/" target="_blank" rel="noreferrer"  id="dynamiclink_1" >http://store.steampowered.com/app/234900/Anodyne/</a><br><br>Russian Localization:  Artyom Solomatin / Артём Соломатин <a href="mailto:(artsolomatin@gmail.com)">(artsolomatin@gmail.com)</a><br>Simplified Chinese Localization: Ada Wu / 一只小雨 <a href="mailto:ada.wuyu@gmail.com">ada.wuyu@gmail.com</a><br>Japanese Localization: Yuki Hiraguchi, On Takahashi <a href="mailto:(takahashi@warlocs.com)">(takahashi@warlocs.com)</a><br>French Localization: Kévin Malchere <a href="mailto:(kmalchere@warlocs.com)">(kmalchere@warlocs.com)</a><br>Brazilian Portuguese: <a href="https://steamcommunity.com/linkfilter/?url=http://deviantart.com/anemptysoul" target="_blank" rel="noopener"  >deviantart.com/anemptysoul</a><br>German Localization: Marcel Weyers, Steven Korkowsky (Tolma4 Team)<br><br>--<br><br>Content Warnings (No Spoilers)<br><span class="bb_spoiler">    Mild Horror, dead bodies, mild body horror, rare occasional language</span><br><br><br>Content Warnings (Spoilers)<br><span class="bb_spoiler"><br>    Body horror: In the 'good ending' of the game, the character C Visionary opens its body up into a spiky dragon mouth. It's not bloody but it might be upsetting to some.<br>    Mild Horror, Dead Bodies: In a late-game area in the desert, talking to an upside-down creature takes you to an area where the art style is much different. If you play here long enough there's a short 'chase' sequence that's akin to horror games, also the atmosphere is a little spooky. There's also something looking like a dead body later with a gargoyle beast implied to be eating it.<br>        This entire sequence is skippable if you don't want 100%. If you do want 100%, you have to play everything in the sequence up to the chase (which can be skipped without seeing the dead body)</span></li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

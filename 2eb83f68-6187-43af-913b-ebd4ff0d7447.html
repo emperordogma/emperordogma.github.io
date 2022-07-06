@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dark Devotion</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2eb83f68-6187-43af-913b-ebd4ff0d7447/cd4fa3bb-1738-4e68-a06d-99444b1eb167.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="2eb83f68-6187-43af-913b-ebd4ff0d7447/97be45da-fbe6-4a78-a3a5-43ff7e6304ae.ico"/> Dark Devotion</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="2eb83f68-6187-43af-913b-ebd4ff0d7447/11359314-7dbd-41e6-bc6e-274da8f331b8.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-6/3/2022">6/3/2022</a> 4:16:49</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-6/14/2022">6/14/2022</a> 13:08:07</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Amazon Games">Amazon Games</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Amazon">Amazon</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Amazon Games">Amazon Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-4/25/2019">4/25/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-74">74</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-72">72</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Hibernian Workshop">Hibernian Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Maple Whispering Limited">Maple Whispering Limited</a><br/><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-The Arcade Crew">The Arcade Crew</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://steamcommunity.com/app/718590" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/718590/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/718590/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/news/?appids=718590" target="_blank">News</a><br/><a href="https://store.steampowered.com/app/718590" target="_blank">Store Page</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=718590" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/stats/718590/achievements" target="_blank">Achievements</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<a href="https://steamcommunity.com/linkfilter/?url=http://discord.gg/hibernian-workshop" target="_blank" rel="noopener"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Banniere-discord-DD.gif?t=1650213860" /></a><br>Be part of the <a href="https://store.steampowered.com/curator/37567673" target="_blank" rel="noreferrer"  ><strong>Hibernian Workshop</strong></a> community by joining our dedicated <a href="https://steamcommunity.com/linkfilter/?url=http://discord.gg/hibernian-workshop" target="_blank" rel="noopener"  ><strong>Discord server</strong></a>!<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Pop-hub.gif?t=1650213860" /><br><br>Explore the secrets of a mysterious fallen temple and put your Templar faith to the test in Dark Devotion, where no sacrifice is too great in praise of your God. Measure your devotion and your bravery by journeying into deepest darkness for answers to questions that will challenge your very existence.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/a-demanding-fight-to-the-death-ConvertImage.png?t=1650213860" /><br><br>Dark Devotion features a richly detailed, immersive narrative that unfolds a sombre tale of your Templar religion’s irresistible calling. Every encounter challenges your fortitude, piety, and conviction as you move deeper into your cursed pilgrimage. Spanning four unique worlds, each with their own incredibly detailed environments, you’ll wield dozens of weapons in your quest to discover the Temple’s secret: all the while assailed by dark enemies and devious bosses whose core mission is to destroy your soul and damn you forever.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/combat-1.gif?t=1650213860" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Rooted_in_RPG_appeal.png?t=1650213860" /><br><br>Throughout Dark Devotion you’ll discover an array of weapons, armors, and relics with which to enhance your character. Each item has its own attributes and statistics, and is customizable with mystical runes. It is essential that you maximize your strengths and adapt your inventory to the enemy you’re facing. Choose wisely...<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Unravel_the_Temple_dark_purpose.png?t=1650213860" /><br><br>Dark Devotion is a story of perseverance, dedication, and secrets. Every chest you open, every item you encounter holds another piece of the story: be it a letter, weapon, or clue, all will help you on your quest. Whether you find these secrets amongst the shadows or in the dead hand of another character ...well, that all depends.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Salle-secrete.gif?t=1650213860" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Seek_your_salvation.png?t=1650213860" /><br><br>In the Temple, Faith is your only recourse against the heathen droves. Defeat them to collect Faith and unlock secret paths, special chests, and more. But remember to use your Faith sparingly. Nothing lasts forever.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Your_life_hangs_by_a_string.png?t=1650213860" /><br><br>The Temple yearns to see you dead. Your survival depends on using the right item at the right time to heal your wounds or dispel a curse. Some of these items can be looted, others are scattered throughout the Temple in secret places. Employ them wisely… your life depends on it.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Only-the-deserving-will-find-virtue-in-the-Temple-ConvertImage_(1).png?t=1650213860" /><br><br>The eye of your God is ever-watchful. Complete an act of bravery or skill, and your God might bless you. But the Temple is also rife with despair and sickness, ready to destroy those who lack courage and temperance. Learn quickly its ways, or suffer.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Decors-neige.gif?t=1650213860" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/There-is-no-retreat-ConvertImage.png?t=1650213860" /><br><br>Salvation is fleeting, so choose your route wisely. Every world in Dark Devotion offers several different paths. Each one is original, but all are interconnected, and the only commonality they share is that there is no turning back.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/combat-2.gif?t=1650213860" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Secrets-abound-ConvertImage.png?t=1650213860" /><br><br>Completing your quest requires shrewd interpretation of the secrets shrouded within the Temple. It’s easy to get lost, though this might bring you favor...depending on the secret you uncover. Perhaps the Temple will reveal a hidden altar where one’s story can be saved if one honors the Temple appropriately...or perhaps not.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/718590/extras/Features-ConvertImage.png?t=1650213860" /><br><br>● Dynamic and heavy combat<br>● Dozens of weapons, armor, and items for various fighting styles<br>● Intricate system of blessings, curses, and illnesses<br>● White-knuckle boss battles<br>● Rich, complex storyline<br>● Dark levels and brooding environments
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
