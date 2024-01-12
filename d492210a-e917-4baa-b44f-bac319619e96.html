@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mighty Fight Federation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('d492210a-e917-4baa-b44f-bac319619e96/6dd53086-1efc-4f0b-87a2-097e58bbca80.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="d492210a-e917-4baa-b44f-bac319619e96/75d83786-9465-48cf-b79d-efa26ad6786b.ico"/> Mighty Fight Federation</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="d492210a-e917-4baa-b44f-bac319619e96/a2cf58fd-34d4-41d7-81d3-23ecc154ad7e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-11/30/2023">11/30/2023</a> 11:43:36</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-12/22/2023">12/22/2023</a> 21:25:03</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Epic Games">Epic Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2/7/2020">2/7/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Komi Games">Komi Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Forthright Casual Games">Forthright Casual Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1096690" target="_blank">Steam</a><br/><a href="http://www.fightmighty.com" target="_blank">Official</a><br/><a href="https://www.epicgames.com/store/en-US/p/mighty-fight-federation" target="_blank">Epic</a><br/><a href="https://discord.gg/NPMmn5T" target="_blank">Discord</a><br/><a href="https://www.facebook.com/fightmighty" target="_blank">Facebook</a><br/><a href="https://twitter.com/fightmighty" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/fightmighty" target="_blank">Instagram</a><br/><a href="https://www.twitch.tv/directory/game/Mighty%20Fight%20Federation" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>Mighty Fight</strong> is a throwback to classic 3D arena fighters, but with a focus on fighting game fundamentals. Select from a roster of characters each with distinct and deep combo opportunities. Use the game's Hype mechanics to zone, evade, counter and play mind-games with your opponents. Mighty Fight combines the old with the new in a fresh competitive twist on the party-fighter genre.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/MFF_Gameplay_Header.png?t=1636141782" /><h2 class="bb_tag"><strong>Hype Energy </strong></h2>Dealing and receiving damage builds up <i>Hype Energy</i>. This two-tiered resource can be spent on Breakers, Hype Cancels or activating Hype Factor.<h2 class="bb_tag"><strong>Breakers </strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/breaker-ceo.gif?t=1636141782" /><br>From hitstun or knock-back, you can spend one bar of <i>Hype Energy</i> on a Breaker to immediately reverse your opponent's combo and put them into a knock-back state. Time it just right and you'll get a free <i>Red Breaker</i>.<h2 class="bb_tag"><strong>Hype Cancels</strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/hypecancel-sf.gif?t=1636141782" /><br>During an attack you can spend one bar to Hype Cancel out of it. This lets you create combos from moves that wouldn't otherwise link, or escape from dangerous situations.<h2 class="bb_tag"><strong>Hype Factor</strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/hypefactor-sr.gif?t=1636141782" /><br>Spend both bars of Hype Energy to activate Hype Factor. During this mode, you won't build any Hype but for a short time your damage output and speed will be increased and you'll slowly regain lost health.<h2 class="bb_tag"><strong>Hype Attacks</strong></h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/hypeatk-ori.gif?t=1636141782" /><br>Once per match, at any time, you can throw out a devastating Hype Attack. Use these to punish an opponent who's put themselves in a precarious position. Every character has a different Hype Attack with different use cases.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/MFF_Story_Header.png?t=1636141782" /><br>In the vast reaches of space there lies a being of incredible cosmic power known only as Hyperion. Wielding the ability to bend reality to his will, he has collected the hypest warriors from across the multiverse. His goal? To pit them against each other in the universe's most electrifying pay-per-view event: The Mighty Fight Federation!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/MFF_Features_Header.png?t=1636141782" /><br><ul class="bb_ul"><li><strong>Multiplayer Mayhem:</strong><br>Battle with up to 4 players locally and online<br></li><li><strong>Play By Yourself:</strong><br>Experience &quot;what if&quot; endings in Arcade Mode, and get good with in-game tutorials and Training Mode<br></li><li><strong>Choose your Character:</strong> Pick from a roster of 13 outlandish characters with unique play-styles. Place traps, throw explosive projectiles and charge in with rush-down combos. Find the style that fits the way you play<br></li><li><strong>Fight or Flight:</strong> Build energy to spend on combo Breakers or spend it all on a Hype Factor activation that can turn the tide of battle. The right choice can make all the difference<br></li><li><strong>The Hypest Soundtrack:</strong><br>A killer soundtrack featuring music by Tee Lopes (Sonic Mania), James Landino (RWBY, No Straight Roads), Vince DiCola (Rocky IV, Transformers) and Manami Matsumae (Mega Man, Shovel Knight)<br></li><li><strong>Evergrowing List of Characters</strong><br>Mighty Fight will continue to grow our roster of fighters with new original and cross-over characters!</li></ul><br><a href="https://steamcommunity.com/linkfilter/?u=https%3A%2F%2Fdiscord.fightmighty.com" target="_blank" rel=" noopener"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/1096690/extras/MFF_Discord_Banner.png?t=1636141782" /></a>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
