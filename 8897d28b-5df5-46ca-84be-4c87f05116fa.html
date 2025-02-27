@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Astrea Six Sided Oracles</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('8897d28b-5df5-46ca-84be-4c87f05116fa/2c5c382a-35e9-4aa0-94b3-51fe7c511444.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="8897d28b-5df5-46ca-84be-4c87f05116fa/9a9b5e50-96a7-4e49-bd1a-468d2a494eb4.ico"/> Astrea Six Sided Oracles</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="8897d28b-5df5-46ca-84be-4c87f05116fa/f0257927-5568-4729-bf9a-04f38b66e31e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-12/29/2024">12/29/2024</a> 11:36:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-12/29/2024">12/29/2024</a> 11:37:03</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Epic">Epic</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-9/21/2023">9/21/2023</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-80">80</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Little Leo Games">Little Leo Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Akupara Games">Akupara Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1755830/Astrea_Six_Sided_Oracles" target="_blank">Steam</a><br/><a href="https://littleleogames.com/" target="_blank">Official</a><br/><a href="https://twitter.com/PlayAstrea" target="_blank">Twitter</a><br/><a href="https://www.gog.com/game/astrea_sixsided_oracles" target="_blank">GOG</a><br/><a href="https://discord.gg/KssgWCJ" target="_blank">Discord</a><br/><a href="https://store.epicgames.com/en-US/p/astrea-six-sided-oracles-33c949" target="_blank">Epic</a><br/><a href="https://www.twitch.tv/directory/game/Astrea:%20Six-Sided%20Oracles" target="_blank">Twitch</a><br/><a href="https://www.reddit.com/r/AstreaSixSidedOracles/" target="_blank">Reddit</a><br/><a href="https://astrea.wiki.gg/" target="_blank">Wikia</a><br/><a href="https://akuparagames.itch.io/astrea-six-sided-oracles" target="_blank">Itch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[GGDeals] Synced">[GGDeals] Synced</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/wishlistanim.png?t=1726667631" /><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/GifAttackMoonieV1.gif?t=1726667631" /><br>Astrea is a DICE-deck-building roguelike that flips the script on deckbuilders by using dice instead of cards and a unique dual “damage” system: Purification vs Corruption. Build a dice pool strong enough to purify Astrea's out-of-control corruption and save the Star System.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/FeaturesHeader.png?t=1726667631" /><br>• <strong>Unique dual “damage” system: Purification vs Corruption -</strong> In Astrea there is a new type of “damage” system. Purification can be used to damage enemies or heal yourself. On the other hand, corruption can be used to damage yourself or heal the enemies. Pacify enemies through Purification, or Corrupt yourself to unleash abilities that help tip the scales.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/PurifyVsCorruptDiceAnimation.gif?t=1726667631" /><br><br>• <strong>Dynamic Health Bar system -</strong> With skills attached to your health bar, you can take Corruption to enable these skills and unleash powerful abilities. But be careful, if you take too much Corruption you will be consumed by it.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/DynamicHealthBarCellarius.gif?t=1726667631" /><br><br>• <strong>Not cards, but dice! -</strong> Build a dice pool that fits your playstyle. Choose from over 350 dice and three dice types; reliably safe, perfectly balanced, or powerfully risky. A dice type system designed with high-risk, high-reward in its core.<br><br>• <strong>Customize your dice -</strong> Forge your fate by editing die faces with new actions, tipping the odds of powerful results into your favor.<br><br>• <strong>Choose from Six Brave Oracles -</strong> Each possessing their own unique dice sets, abilities, and playstyles. From ingenious spellcasters to brutish berserkers, whether you like beating the opponent into submission or outsmarting them with clever plays, there’s an oracle for you.<br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/SixCharactersPanel.png?t=1726667631" /><br><br>• <strong>20 Upgradeable Support Sentinels -</strong> Enchanted constructs that offer supportive dice rolls making them reliable companions in the heat of battle.<br><br>• <strong>Uncover Over 170 Modifying Blessings -</strong> Imbue your Oracle with unique passives yielding potent effects that change up your fundamental tactics. Choose between Star Blessings, passive effects with lower power, or Black Hole Blessings, powerful passive effects with a drawback.<br><br>• <strong>More than 20 random events</strong> - Find mysterious locations that can change the course of your run.<br><br>• <strong>Manipulate your enemies and control your fate -</strong> Enemies attack using their own die, making it possible for you to manipulate their die to change their intent.<br><br>• <strong>16 Difficulty Levels -</strong> Customize your experience using difficulty levels to test all your abilities.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/MoonieLosing.gif?t=1726667631" /><br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/LoreHeader.png?t=1726667631" /><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/CrimsomDawnPanel.png?t=1726667631" /><br><br>Long ago - when ancient ruins were once flourishing civilizations and their populace lived in idyllic bliss - a mystical star governed all. Loyal disciples, called Six-Sided Oracles, were blessed by their star, granting them the strength to seal away the gift of heavenly bodies within mystic relics.<br><br>All was perfect and harmonious, until that one fateful day - The Crimson Dawn Cataclysm. A ferocious inferno sundered down from the sky, engulfing the entirety of the star system, crumbling the foundations of their society and corrupting the souls of the weak-willed. The disciples of the star were lost to the chaos - their creations scattered across a vast world of ruin. Could there still exist those who were capable of wielding their power?<br><br>Eons later, descendants of the Six-Sided Oracles embark on a journey to finish the failed battle that their predecessors started and save their star system.<br><br><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1755830/extras/JoinDiscord.gif?t=1726667631" />
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
