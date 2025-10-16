@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Subterrain: Mines of Titan</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('48f3ea70-a020-4e44-93d6-6894f1582140/697d205b-b2be-4507-9d92-1e7eb5807e4c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="48f3ea70-a020-4e44-93d6-6894f1582140/e3ff5eab-5a0d-41f0-9858-fa106461f65a.ico"/> Subterrain: Mines of Titan</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="48f3ea70-a020-4e44-93d6-6894f1582140/7d0e44a2-38ec-4e59-8a7b-d0f8a706dd62.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-9/11/2025">9/11/2025</a> 15:14:27</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-9/18/2025">9/18/2025</a> 12:09:38</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default_library_ascending_name_ascending.html#quicklink-Amazon Games">Amazon Games</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Amazon">Amazon</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-Amazon Games">Amazon Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-3/12/2024">3/12/2024</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-PixelLore">PixelLore</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Freedom Games">Freedom Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single-Player">Single-Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1573100" target="_blank">Steam</a><br/><a href="https://www.twitch.tv/directory/game/Subterrain:%20Mines%20of%20Titan" target="_blank">Twitch</a><br/><a href="https://www.gog.com/en/game/subterrain_mines_of_titan" target="_blank">GOG</a><br/><a href="https://store.epicgames.com/en-US/p/subterrain-mines-of-titan-df2d9d" target="_blank">Epic</a><br/><a href="https://discord.gg/ERRSBJafXZ" target="_blank">Discord</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="default%20combobox%20quicklinks_tag_ascending_name_ascending.html#quicklink-[GGDeals] Synced">[GGDeals] Synced</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/5f8f6991bc37a71a6d834f568fb70b5e.avif?t=1752442429" width=616 height=86 /></span><br><br><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/bca25f86470252591db2efadc309a3ac.poster.avif?t=1752442429" width=616 height=302 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/bca25f86470252591db2efadc309a3ac.webm?t=1752442429" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/bca25f86470252591db2efadc309a3ac.mp4?t=1752442429" type="video/mp4"></video></span><br><br>After a massive meteor strikes the icy surface of Titan, nothing is left but a vast deposit of rare minerals. The TECC mining company rushes to establish a colony on Titan and successfully tap the riches, until the colony goes dark. It takes years to mount a salvage expedition to the far flung moon of Saturn, so make it count. Restart the flow of resources and figure out what happened to the first wave of colonists.<br><br>Stand between the sole survivors of Camp Huygens and total obliteration by Saturn's darkest mysteries. Every turn counts in the desperate struggle for survival, as Titan will not wait around - and neither should you.<br><br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/fc1674d6758609583b6df06373c365d3.avif?t=1752442429" width=616 height=86 /></span><br><br><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/6b7d9ac3afaf70b6ed5861ac0075fabd.poster.avif?t=1752442429" width=616 height=302 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/6b7d9ac3afaf70b6ed5861ac0075fabd.webm?t=1752442429" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/6b7d9ac3afaf70b6ed5861ac0075fabd.mp4?t=1752442429" type="video/mp4"></video></span><br><br><ul class="bb_ul"> <li> Titan is an unrelenting dynamic, persistent world. Every action and step advances time and brings Camp Huygens closer to collapse, unless someone intervenes.<br></li><li> Help surviving colonists with their tasks, assign key jobs, harvest materials, and organize crafting stations to keep the doom at bay.<br></li><li> Manage food and water intake, keep tabs on oxygen and energy levels, and treat any sustained injuries, all while penetrating the abandoned mining tunnels beneath the surface.<br></li><li> Track the passage of time efficiently or it might turn out that the greatest threat to Camp Huygens isn't Titan or its monsters... but you!</li></ul> <br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/5e745be3ad1671680116aee463e499fb.avif?t=1752442429" width=616 height=86 /></span><br><br><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/24181d039a3982c97f454d4224040601.poster.avif?t=1752442429" width=616 height=302 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/24181d039a3982c97f454d4224040601.webm?t=1752442429" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/24181d039a3982c97f454d4224040601.mp4?t=1752442429" type="video/mp4"></video></span><br><br><ul class="bb_ul"> <li> Unearth the mysteries of Saturn's most famous moon and go deep beneath its surface to face off against its many horrors.<br></li><li> Fight the monstrosities using intuitive, brisk turn-based combat. Do you make the fight close and personal, risking death as you go toe to toe? Or plink from afar, hoping that ammo won't run out at the wrong time?<br></li><li> Harness the power of nanomachines to unleash devastating abilities against foes, but also sacrifice the ability to physically pummel monsters into submission?<br></li><li> Gain experience and power alongside the celestial creatures underground. Evolve and adapt tactics, or perish in the darkness of Titan's mines!</li></ul> <br><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/c19887167101d2932a82e2d5ffa31234.avif?t=1752442429" width=616 height=86 /></span><br><br><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/511d97429cbaa7752916d18fb8343226.poster.avif?t=1752442429" width=616 height=302 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/511d97429cbaa7752916d18fb8343226.webm?t=1752442429" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1573100/extras/511d97429cbaa7752916d18fb8343226.mp4?t=1752442429" type="video/mp4"></video></span><br><br><ul class="bb_ul"> <li> Craft an endless array of items thanks to a small handful of allies like weapons and elbow grease.<br></li><li> Salvage what you can, break it down into materials, and produce tools like melee weapons, firearms, protective gear, explosives, and countless survival upgrades.<br></li><li> Enhance yourself with medical supplies and continue research to develop even better versions.<br></li><li> Survive long enough to unearth the terrible truth of what happened to the first wave of colonists or find a way to get off the doomed moon, no one said you get both...</li></ul>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
